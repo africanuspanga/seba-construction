@@ -50,8 +50,8 @@ export default function AboutPage() {
             >
               <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-xl">
                 <Image
-                  src="/images/Building Construction.jpg"
-                  alt="SEBA Construction"
+                  src="/images/About us section.jpg"
+                  alt="SEBA Drilling Operations"
                   fill
                   className="object-cover"
                 />
