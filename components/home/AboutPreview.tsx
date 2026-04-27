@@ -22,8 +22,8 @@ export default function AboutPreview() {
           >
             <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-2xl">
               <Image
-                src="/images/Drilling Works.png"
-                alt="SEBA Drilling Operations"
+                src="/images/About us section.jpg"
+                alt="SEBA Construction Operations"
                 fill
                 className="object-cover"
               />

@@ -2,17 +2,41 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Drill, Droplets, Waves, Truck, Search, ArrowRight } from "lucide-react";
-import { EQUIPMENT } from "@/lib/data";
+import { ArrowRight, Wrench } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 
-const categoryIcons: Record<string, React.ElementType> = {
-  Drilling: Drill,
-  Pumping: Waves,
-  Dewatering: Droplets,
-  Civil: Truck,
-  Survey: Search,
-};
+const HIGHLIGHTED_EQUIPMENT = [
+  {
+    name: "Drilling Rig (DTH)",
+    spec: "350m max depth — DTH (Down-The-Hole) Method",
+    category: "Drilling",
+  },
+  {
+    name: "RC Drilling Rig",
+    spec: "450m max — Multipurpose RC & Diamond drilling",
+    category: "Drilling",
+  },
+  {
+    name: "Diamond Drilling Rig (DD)",
+    spec: "800m max depth — Precision core sampling",
+    category: "Drilling",
+  },
+  {
+    name: "Submersible Pump",
+    spec: '6" diameter — 100,000 L/hr capacity for pumping tests',
+    category: "Pumping",
+  },
+  {
+    name: "Excavator",
+    spec: "Heavy earthworks and trenching",
+    category: "Civil",
+  },
+  {
+    name: "ABEM Terrameter SAS 1000",
+    spec: "Resistivity measurement for hydrogeological survey",
+    category: "Survey",
+  },
+];
 
 const categoryColors: Record<string, string> = {
   Drilling: "bg-primary/10 text-primary",
@@ -23,83 +47,70 @@ const categoryColors: Record<string, string> = {
 };
 
 export default function EquipmentShowcase() {
-  const categories = Array.from(new Set(EQUIPMENT.map((e) => e.category)));
-
   return (
     <section className="py-20 md:py-32 bg-light">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          title="Our Equipment Fleet"
+          title="Featured Equipment"
           subtitle="Modern Machinery"
         />
 
-        <div className="grid lg:grid-cols-5 gap-8">
-          {/* Category Cards */}
-          {categories.map((category, catIndex) => {
-            const items = EQUIPMENT.filter((e) => e.category === category);
-            const Icon = categoryIcons[category] || Drill;
-            const colorClass = categoryColors[category] || "bg-gray-100 text-gray-600";
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {HIGHLIGHTED_EQUIPMENT.map((item, index) => {
+            const colorClass =
+              categoryColors[item.category] || "bg-gray-100 text-gray-600";
 
             return (
               <motion.div
-                key={category}
+                key={item.name}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: catIndex * 0.1 }}
-                className="lg:col-span-1"
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300"
               >
-                <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 h-full">
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${colorClass}`}>
-                    <Icon size={24} />
+                {/* Image Placeholder */}
+                <div className="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
+                  <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-400">
+                    <Wrench size={36} className="mb-2 opacity-50" />
+                    <span className="text-xs font-medium uppercase tracking-wider">
+                      Equipment Image
+                    </span>
                   </div>
-                  <h3 className="text-lg font-bold text-dark mb-4">{category}</h3>
-                  <ul className="space-y-3">
-                    {items.map((item, i) => (
-                      <li key={i} className="text-sm">
-                        <span className="font-semibold text-gray-800">{item.name}</span>
-                        <p className="text-gray-500 text-xs mt-0.5">{item.spec}</p>
-                      </li>
-                    ))}
-                  </ul>
+                </div>
+
+                {/* Content */}
+                <div className="p-6">
+                  <span
+                    className={`inline-block px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full mb-3 ${colorClass}`}
+                  >
+                    {item.category}
+                  </span>
+                  <h3 className="text-lg font-bold text-dark mb-2 group-hover:text-primary transition-colors">
+                    {item.name}
+                  </h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    {item.spec}
+                  </p>
                 </div>
               </motion.div>
             );
           })}
         </div>
 
-        {/* Extra Info */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-12 grid md:grid-cols-3 gap-6"
-        >
-          {[
-            { title: "Well Casing", desc: "UPVC casing installation to maintain well integrity and prevent collapse." },
-            { title: "Well Development", desc: "Mechanical surging and air/water jetting to repair aquifer damage and remove fine particles." },
-            { title: "Well Testing", desc: "Step drawdown and constant pumping tests with chemical analysis for yield verification." },
-          ].map((item, i) => (
-            <div key={i} className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
-              <h4 className="font-bold text-dark mb-2">{item.title}</h4>
-              <p className="text-gray-600 text-sm">{item.desc}</p>
-            </div>
-          ))}
-        </motion.div>
-
+        {/* Link to full equipment page */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-10 text-center"
+          className="mt-12 text-center"
         >
           <Link
-            href="/about"
+            href="/equipment"
             className="inline-flex items-center gap-2 px-8 py-4 bg-dark text-white font-semibold rounded-xl hover:bg-dark/90 transition-colors"
           >
-            View Full Equipment List
+            View Full Equipment Fleet
             <ArrowRight size={18} />
           </Link>
         </motion.div>

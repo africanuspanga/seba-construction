@@ -52,6 +52,14 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/gallery"
+                  className="text-gray-400 hover:text-primary transition-colors text-sm"
+                >
+                  Gallery
+                </Link>
+              </li>
             </ul>
           </div>
 

@@ -163,7 +163,7 @@ export default function ProjectsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 md:py-28 bg-dark relative overflow-hidden">
+      <section className="py-20 md:py-28 bg-dark relative overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
             backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
