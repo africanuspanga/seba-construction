@@ -21,6 +21,10 @@ export default function EquipmentPage() {
     <>
       {/* Page Header */}
       <section className="pt-32 pb-20 bg-dark relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('/images/bg-images/istockphoto-2248616574-612x612.jpg')` }} />
+          <div className="absolute inset-0 bg-dark/80" />
+        </div>
         <div className="absolute inset-0 opacity-10">
           <div
             className="absolute inset-0"
