@@ -129,7 +129,7 @@ export default function EquipmentPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 md:py-28 bg-dark relative overflow-hidden border-b border-white/10">
+      <section className="py-20 md:py-28 bg-dark relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div
             className="absolute inset-0"
